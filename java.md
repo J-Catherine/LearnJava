@@ -290,6 +290,128 @@ double[] values = new double[size];
     char letter = fruit.charAt(0);//表示要提取位置0 处的字符b
     ```
 
+    在Unicode 中，每个字符由一个字符编码表示，我们可将字符编码视为整数。大写的希腊字母的字符编码为913~937，因此我们可以像下面这样显示希腊字母表：
+
+    ```java
+    System.out.print("Greek alphabet: ");
+    for (int i = 913; i <= 937; i++) {
+    	System.out.print((char) i); //使用了类型转换将指定范围内的每个整数都转换为相应的字符。
+    }
+    System.out.println();
+    ```
+
++   字符串是不可以修改的
+
+    字符串提供了方法toUpperCase 和toLowerCase，它们可分别转换为大写和小写。
+
+    ```java
+    String name = "Alan Turing";
+    String upperName = name.toUpperCase();
+    /*
+    upperName 将指向字符串"ALAN TURING"，但name 依然指向字符串"Alan Turing"。
+    */
+    ```
+
+    replace方法，它在字符串中查找并替换指定的子串。
+
+    ```java
+    String text = "Computer Science is fun!";
+    text = text.replace("Computer Science", "CS");//将"Computer Science" 替换为"CS"
+    /*
+    它调用text.replace，然后text.replace方法返回一个引用，该引用指向新字符串"CS is fun!"。然后它将这个引用赋给变量text，使其不再指向原来的字符串。
+    */
+    ```
+
++   子串
+
+    方法substring 返回一个新的字符串，其中包含已有字符串中从指定索引到末尾的字符。
+
+    ```java
+    • fruit.substring(0) 返回"banana"
+    • fruit.substring(2) 返回"nana"
+    • fruit.substring(6) 返回""
+      
+    //（起始，终止）
+    • fruit.substring(0, 3) 返回"ban"
+    • fruit.substring(2, 5) 返回"nan"
+    • fruit.substring(6, 6) 返回""
+    ```
+
++   查找字符串 indexOf
+
+    indexOf 方法返回的是字符第一次出现处的索引
+
+    ```java
+    String fruit = "banana";
+    int index = fruit.indexOf('a');
+
+    //第二个实参，指定从字符串的什么位置开始查找。
+    int index = fruit.indexOf('a', 2); //从fruit[2]开始查找（包括[2]的字符'n'）
+    ```
+
++   字符串比较
+
+    **运算符 == 通过比较引用来判断两个变量指向的是否为同一个对象** （不建议比较两个字符串是否相等，有时会出现错误答案）
+
+    正确方法——使用方法 equals：
+
+    ```java
+    //对name1 调用equals，并将实参指定为name2。如果两个字符串包含相同的字符，方法equals 将返回true，否则返回false
+
+    if (name1.equals(name2)) {
+    	System.out.println("The names are the same.");
+    }
+    ```
+
+    如果两个字符串不同，可用compareTo 来确定按字母表顺序排列时哪个字符串在前：
+
+    compareTo 方法的返回值为两个字符串中第一个不同的字符的差——name1[i]-name2[i]
+
+    ```java
+    //name1[i]-name2[i]
+
+    int diff = name1.compareTo(name2);
+    if (diff == 0) {
+    	System.out.println("The names are the same.");
+    } else if (diff < 0) {
+    	System.out.println("name1 comes before name2.");
+    } else if (diff > 0) {
+    	System.out.println("name2 comes before name1.");
+    }
+    ```
+
+    **equals 和compareTo 都区分大小写。** （大写字母在小写字母前）
+
++   设置字符串格式
+
+    ```
+    String.format("%02d:%02d %s", hour, minute, ampm);
+    ```
+
+    格式说明符%02d 表示将整数显示为两位（不够两位就添加前导零），因此 timeString(19, 5) 返回字符串"07:05 PM"。
+
++   包装类
+
+    Java 库包含与每种基本类型对应的类，这些类被称为包装类
+
+    与char对应的包装类为Characte；与int 对应的包装类为Integer；其他包装类包括Boolean、Long 和Double。这些包装类都位于java.lang 包中，因此无需导入就可使用。
+
+    每个包装类都定义了常量MIN_VALUE 和MAX_VALUE。例如，Integer.MIN_VALUE 的值为-2147483648，而Integer.MAX_VALUE 的值为2147483647。
+
+    例子：
+
+    字符串转换为其他类型：`Integer.parseInt(str)` 将字符串转换为整数
+
+    返回值的字符串表示：toString 方法`String str = Integer.toString(num);`
+
++   命令行实参
+
+    ```
+    java class 10 -3 55 0 14
+    ```
+
+    ​
+
     ​
 
 
