@@ -4,7 +4,7 @@ GitHub 是一种托管服务，为Git 仓库提供存储空间，还提供了方
 
 
 
-###主要特性
+### 主要特性
 
 Java语言不使用指针，而是引用。并提供了自动的废料收集，使得程序员不必为内存管理而担忧。
 
@@ -165,4 +165,133 @@ public class Echo {
         double x = Math.exp(Math.log(10.0));
         ```
 
-        ​
+
+
+
+### 逻辑
+
+栈图是个好东西
+
+
+
+### 值方法
+
++   重载
+
+    多个方法同名，但每个方法接受的参数不同。
+
+
+
+### 循环
+
++   封装和泛化
+
+    封装：如果某一能够正确运行，就将它们封装到一个方法中，并再次测试。
+    泛化：如果这个方法没问题，就将其中的字面量替换为变量和形参。
+
+
+
+### 数组
+
+```java
+//声明
+int[] counts;
+double[] values;
+
+//建立
+counts = new int[4];
+values = new double[size];
+
+//创建数组
+int[] counts = new int[4];
+double[] values = new double[size];
+```
+
++   显示数组
+
+    ```java
+    int[] a = {1, 2, 3, 4};
+    System.out.println(a);
+    /*
+    输出:
+    [I@bf3f7e0
+    方括号表明值是一个数组，I 表示整数，余下的内容是这个数组的地址
+    */
+    ```
+
+    工具类java.util.Arrays，这个类提供了处理数组的方法。其中一个方法toString，用于返回数组的字符串表示。
+
+    ```java
+    System.out.println(Arrays.toString(a));
+    /*
+    输出如下：
+    [1, 2, 3, 4]
+    */
+    ```
+
++   复制数组
+
+    直接赋值 `double[] b = a;` 这种方法只能使a、b两个变量**指向**同一个数组，a 和b 只是表示同一样东西的不同名称
+
+    而要复制数组本身而不是指向它的引用，那么就必须创建一个新的数组，并将旧数组中的每个元素都复制到新数组中
+
+    或者选择是使用 java.util.Arrays，它提供了复制数组的方法 copyOf `double[] b = Arrays.copyOf(a, 3);` ，其中的第二个参数用来指定要复制的元素个数
+
++   数组长度
+
+    内置常量length
+
++   随机数
+
+    ```java
+    java.util.Random //生成伪随机数
+      
+    //这个类的方法nextInt 接受int 实参n，并返回一个位于0~n-1（闭区间）的随机数。
+
+    public static int[] randomArray(int size) {
+    	Random random = new Random();
+    	int[] a = new int[size];
+    	for (int i = 0; i < a.length; i++) {
+    		a[i] = random.nextInt(100); //0~99 的随机数来填充
+    	}
+    	return a;
+    }
+
+    int numValues = 8;
+    int[] array = randomArray(numValues);
+    printArray(array);
+    ```
+
++   改进的for循环
+
+    ```java
+    for (int i = 0; i < values.length; i++) {
+    	System.out.println(values[i]);
+    }
+
+    for (int value : values) {
+    	System.out.println(value);
+    }
+
+    //两种形式等价。
+    //for (int value : values)可以理解为for(value in values)对于values 中的每个值value
+    ```
+
+
+
+### 字符串
+
++   字符
+
+    字符串提供了提取字符的方法charAt，这个方法会返回一个char
+
+    ```java
+    String fruit = "banana";
+    char letter = fruit.charAt(0);//表示要提取位置0 处的字符b
+    ```
+
+    ​
+
+
+
+对象（object）是提供一系列方法的数据集合
