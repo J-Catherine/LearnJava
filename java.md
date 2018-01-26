@@ -560,3 +560,98 @@ double[] values = new double[size];
 
 
 
+
+### 对象数组
+
++   类变量
+
+    在类定义中声明，使用了关键词static 对其进行标识。它们创建于程序开始运行（或所属类首次被使用）时，直到程序结束才消失。类变量由其所属类的所有实例共享。
+
+    ```java
+    public class Card {
+        public static final String[] RANKS = {
+            null, "Ace", "2", "3", "4", "5", "6", "7",
+            "8", "9", "10", "Jack", "Queen", "King"};
+        public static final String[] SUITS = {
+        	"Clubs", "Diamonds", "Hearts", "Spades"};
+        	
+        // 这里为实例变量和构造函数
+        public String toString() {
+        	return RANKS[this.rank] + " of " + SUITS[this.suit];
+        }
+    }
+    ```
+
+    类变量常用于存储多个地方要用到的常量值。在这种情况下，还应将它们声明为final。
+
+    请注意，决定将变量声明为static 或final 时，需要考虑两个不同的因素：**如果变量由所有实例共享，那么就将其声明为static；如果变量为常量，就应将其声明为final。**
+
+    **对于static final 变量来说，一种常用的命名约定是采用全大写**
+
++   方法compareTo
+
+    需要制定规则，比如在点数相同但是花色不同时指明哪个更重要
+
++   Card对象是不可修改的
+
+    为此，只要不提供任何非纯方法（包括设置方法）就可以了。但以后还可能有人傻乎乎地添加非纯方法。为防范这种情况，可
+    **将实例变量声明为final 的**：
+
+    ```java
+    public class Card {
+    private final int rank;
+    private final int suit;
+    ...
+    }
+    ```
+
++   二分法查找
+
+    (1) 选择一个位于low 和high 之间的索引（mid），并将该索引处的Card 对象同目标进行比较。
+
+    (2) 如果找到目标，就返回这个索引。
+    (3) 如果mid 处的Card 对象比目标小，就在范围mid + 1 到high 中搜索。
+    (4) 如果mid 处的Card 对象比目标大，就在范围low 到mid - 1 中搜索。
+
+    ```java
+    public static int binarySearch(Card[] cards, Card target) {
+        int low = 0;
+        int high = cards.length - 1;
+        while (low <= high) {
+        	int mid = (low + high) / 2; 					 // 第1步
+        	int comp = cards[mid].compareTo(target);
+        	if (comp == 0) { 								// 第2步
+        		return mid;
+            } else if (comp < 0) { 							 // 第3步
+            	low = mid + 1;
+            } else { 										// 第4步
+            	high = mid - 1;
+            }
+        }
+        return -1;
+    }
+    ```
+
++   二分法的递归调用
+
+    ```java
+    public static int binarySearch(Card[] cards, Card target, int low, int high) {
+        if (high < low) {
+        	return -1;
+        }
+        int mid = (low + high) / 2; 							 // 第1步
+        int comp = cards[mid].compareTo(target);
+        if (comp == 0) { 										// 第2步
+        	return mid;
+        } else if (comp < 0) { 									 // 第3步
+        	return binarySearch(cards, target, mid + 1, high);
+        } else { 												// 第4步
+        	return binarySearch(cards, target, low, mid - 1);
+        }
+    }
+    ```
+
+
+
+### 数组对象
+
