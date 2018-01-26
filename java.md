@@ -653,5 +653,34 @@ double[] values = new double[size];
 
 
 
+
 ### 数组对象
+
+
+
+### 包含其他对象的对象
+
++   库
+
++   继承
+
+    在Java 中，类只能扩展一个超类。没有用extends 指定超类的类将自动继承java.lang.Object
+
+    ```java
+    public class Deck extends CardCollection {//CardCollections是一个超类（被继承的）
+      
+        public Deck(String label) {
+        	super(label); //super——关键词，指的是当前类的超类。这里这样将super 用作方法时，将调用超类的构造函数。
+            for (int suit = 0; suit <= 3; suit++) {
+                for (int rank = 1; rank <= 13; rank++) {
+                	cards.add(new Card(rank, suit));
+                }
+            }
+        }
+    }
+    ```
+
+
+
+### 调试
 
