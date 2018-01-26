@@ -412,8 +412,151 @@ double[] values = new double[size];
 
     ​
 
-    ​
+
+### 对象
+
+对象（object）是提供一系列方法的数据集合。例如，String 是一个字符串集合，提供了charAt 和substring 等方法。
+
++   Point对象
+
+    +   用于表示笛卡尔平面中的位置坐标，在 java.awt 包中 `import java.awt.Point;`
+
+        ```java
+        import java.awt.Point;
+
+        Point blank;
+        blank = new Point(3, 4);
+        System.out.println(blank);
+        /*
+        输出：java.awt.Point[x=3,y=4]
+        */
+        ```
+
+    +   属性：属于对象的变量通常称为属性或字段
+
+    +   返回对象
+
+        ```java
+        public static Point findCenter(Rectangle box) {
+            int x = box.x + box.width / 2;
+            int y = box.y + box.height / 2;
+            return new Point(x, y); //创建了一个新的Point 对象，并返回一个指向该对象的引用
+        }
+        ```
+
+        **将对象赋给变量时，赋给变量的实际上是指向对象的引用**
+
+    +   类图
+
+        +   由统一建模语言（Unified Modeling Language，UML）定义的一种概述类设计的标准方式。
+        +   上半部分列出了属性，下半部分列出了方法
+        +   状态图描述的是程序运行时的对象和变量，而类图描述的是编译时的源代码。
 
 
 
-对象（object）是提供一系列方法的数据集合
+### 类
+
+数据封装（data encapsulation）
+
++   构造函数
+
+    +   • 构造函数与类同名；
+        • 构造函数没有返回类型（因此没有返回值）；
+        • 不使用关键字static
+
+    +   构造函数可以**重载**
+
+        一种常见的做法：在提供一个不接受任何参数的构造函数（如前面的构造函数）的同时，提供一个“值构造函数”
+
+        ```java
+        public Time(int hour, int minute, double second) {
+            this.hour = hour;
+            this.minute = minute;
+            this.second = second;
+        }
+        ```
+
++   获取方法和设置方法
+
+    私有变量可在当前类（如Time）中访问，但如果试图在其他类中访问它们（如继承），编译器会报错。可提供 “获取方法” 和 “设置方法”：
+
+    ```java
+    //获取方法-在Time类中
+    public int getHour() {
+    	return this.hour;
+    }
+    public int getMinute() {
+    	return this.minute;
+    }
+
+    //设置方法-在Time类中
+    public void setHour(int hour) {
+    	this.hour = hour;
+    }
+    public void setMinute(int minute) {
+    	this.minute = minute;
+    }
+    ```
+
++   方法toString
+
+    每种对象类型都有一个名为toString 的方法，用于返回对象的字符串表示
+
+    实例方法（非静态方法static）：必须通过类（这里是Time）的实例来调用
+
+    ```java
+    public String toString() {
+    	return String.format("%02d:%02d:%04.1f\n",this.hour, this.minute, this.second);
+    } //toString 中的this 与time 指的是同一个对象。
+
+    Time time = new Time(11, 59, 59.9);
+    String s = time.toString();
+    System.out.println(time);
+    ```
+
++   方法equals
+
+    运算符== 检查两个对象是否相同（identical），即指的是否是同一个对象。
+
+    方法equals 检查两个对象是否相等（equivalent），即它们的值是否相同。
+
++   纯方法和非纯方法
+
+    +   纯方法——静态方法
+
+        返回类的引用
+
+        • 它们没有修改形参；
+        • 它们没有任何“副作用”，如打印；
+        • 它们的返回值完全取决于形参，而不受任何其他状态的影响。
+
+    +   非纯方法
+
+        直接修改当前的Time 对象，而不是创建并返回一个新的Time 对象——修改对象状态（实例变量）
+
+        ```java
+        //纯方法
+        public static Time add(Time t1, Time t2) {
+        	Time sum = new Time();
+        	sum.hour = t1.hour + t2.hour;
+        	sum.minute = t1.minute + t2.minute;
+        	sum.second = t1.second + t2.second;
+        	return sum;
+        }
+
+        //非纯方法
+        public void increment(double seconds) {
+            this.second += seconds;
+            while (this.second >= 60.0) {
+                this.second -= 60.0;
+                this.minute += 1;
+            }
+            while (this.minute >= 60) {
+                this.minute -= 60;
+                this.hour += 1;
+            }
+        }
+        ```
+
+
+
