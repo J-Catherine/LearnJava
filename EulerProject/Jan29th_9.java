@@ -51,9 +51,23 @@ public class Jan29th_9{
         System.out.println(max);
     }
 
+    public static void p9(){
+        int a = 1, b = 1;
+        long c = 1;
+        for(a = 1; a < 499; a++){
+            for(b = a; b < 999 - a; b++){
+                c = 1000 - (a + b);
+                if(c * c == a * a + b * b){
+                    System.out.println(a);
+                    System.out.println(b);
+                    System.out.println(c);
+                }
+            }
+        }
+    }
 
     public static void main(String[] args){
         //String a = ""
-        p8();
+        p9();
     }
 }
