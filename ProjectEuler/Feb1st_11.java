@@ -14,14 +14,11 @@ public class Feb1st_11{
             e.printStackTrace();
         }
         
-        String[] ss = s.split("\n");
+        String[] ss = s.split("\n|\r| ");
         for(int i = 0; i < 20; i++){
-            String[] sss = ss[i].split(" ");
-            for(int j = 0; j < 19; j++){
-                data[i][j] = Integer.parseInt(sss[j]);
+            for(int j = 0; j < 20; j++){
+                data[i][j] = Integer.parseInt(ss[i*21+j]);
             }
-            String[] ssss = sss[19].split("\r");
-            data[i][19] = Integer.parseInt(ssss[0]);
         }
 
         // for(int i = 0; i < 20; i++){
