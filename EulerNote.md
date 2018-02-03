@@ -32,3 +32,52 @@
 
     暴力做的.....
 
++   第八题
+
+    读入很麻烦
+
+    ```java
+    //把所有内容都当做字符串读入
+    String s="0";
+            try {  
+                FileInputStream in = new FileInputStream("./p8.data"); // 读取文件路径  
+                byte bs[] = new byte[in.available()];  
+                in.read(bs);
+                s = new String(bs);
+                in.close();  
+            } catch (Exception e) {  
+                e.printStackTrace();  
+            }
+    ```
+
++   第九题
+
+    枚举就好啦
+
+
++   第十题
+
+    欧拉筛法
+
+    找出一个质数后把所有它的倍数都标记掉
+
++   第十一题
+
+    读入4个for循环（上下对角线）
+
+    ```java
+            String[] ss = s.split("\n|\r| ");
+    		//用\n和\r还有空格分隔字符串（表示——正则表达式*-以后学）
+
+            for(int i = 0; i < 20; i++){
+                for(int j = 0; j < 20; j++){
+                    data[i][j] = Integer.parseInt(ss[i*21+j]);//21是回车
+                }
+            }
+    ```
+
++   第十二题
+
+    先找出三角形数（n(n+1)/2）
+
+
