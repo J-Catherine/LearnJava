@@ -94,6 +94,36 @@ public class Feb8th_20{
         System.out.println(sum);
     }
 
+    private static void p19(){
+        int days = 1;
+        int count = 0;
+        for(int i = 1900; i <= 2000; i++){
+            for(int j = 1; j <= 12; j++){
+                //
+                if(j == 4 || j == 6 || j == 9 || j == 11){
+                    days += 30;
+                }
+                else if(j == 1 || j == 3 || j == 5 || j == 7|| j == 8 ||j == 10 ||j == 12){
+                    days += 31;
+                }
+                else{
+                    if ((i % 4 == 0 && i % 400 == 0) || (i % 4 == 0 && i % 100 != 0)){
+                        days += 29;
+                    }
+                    else{
+                        days += 28;
+                    }
+                }   
+                if(i > 1900){
+                   if(days % 7 == 0){
+                       count ++;
+                   }
+                }
+            }
+        }
+        System.out.println(count);
+    }
+
     private static void p20(){
         int[] muti = new int[100000];
         int posnum = 1; //位数
@@ -129,6 +159,7 @@ public class Feb8th_20{
         //p16();
         //p18_main();
         //p17();
-        p20();
+        //p20();
+        p19();
     }
 }
