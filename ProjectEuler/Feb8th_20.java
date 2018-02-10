@@ -95,12 +95,40 @@ public class Feb8th_20{
     }
 
     private static void p20(){
-        
+        int[] muti = new int[100000];
+        int posnum = 1; //位数
+        int sum = 0;
+        //初始化muti数组
+        muti[0] = 1;
+        for(int i = 1; i < 100000; i++){
+            muti[i] = 0;
+        }
+        for(int j = 1; j < 101; j++){
+            for(int i = 0; i < posnum; i++){
+                muti[i] *= j;
+            }
+            for(int i = 0; i < posnum; i++){
+                if(muti[i] > 9){
+                    muti[i+1] += muti[i] / 10;
+                    muti[i] %= 10;
+                }
+            }
+            while(muti[posnum] > 0){  
+                muti[posnum+1] += muti[posnum] / 10;
+                muti[posnum] %= 10;
+                posnum ++; 
+            }
+        }
+        for(int i = 0; i < posnum; i++){
+            sum += muti[i];
+        }
+        System.out.println(sum);
     }
     
     public static void main(String[] args){
         //p16();
         //p18_main();
-        p17();
+        //p17();
+        p20();
     }
 }
