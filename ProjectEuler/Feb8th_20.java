@@ -68,7 +68,30 @@ public class Feb8th_20{
     }
 
     private static void p17(){
+        int[] bit = {0,3,3,5,4,4,3,5,5,4};
+        int[] ten = {0,3,6,6,5,5,5,7,6,6};
+        int[] hun = {0,7,7,7,7,7,7,7,7,7};
+        int[] ele = {0,6,6,8,8,7,7,9,8,8};
+        for(int i = 1; i < 10; i++){
+            hun[i] += bit[i];
+        }
 
+        int sum = 0;
+        for(int i = 1; i < 10; i++){
+            sum += bit[i] * 90;
+        }
+        for(int i = 2; i < 10; i++){
+            sum += ten[i] * 100;
+        }
+        sum += ten[1] * 10;
+        for(int i = 1; i < 10; i++){
+            sum += ele[i] * 10;
+        }
+        for(int i = 1; i < 10; i++){
+            sum += hun[i] * 100;
+        }
+        sum += 3 * 99 * 9 + 11;
+        System.out.println(sum);
     }
 
     private static void p20(){
@@ -77,6 +100,7 @@ public class Feb8th_20{
     
     public static void main(String[] args){
         //p16();
-        p18_main();
+        //p18_main();
+        p17();
     }
 }
