@@ -16,6 +16,8 @@ def getEuler(num):
     html = html[indexs[0]+4:indexs[3]]
     with open("Problems/P"+str(num)+".html","w",encoding="utf-8") as fout:
         fout.write(html)
+    with open("C:/Users/Catherine_JY/Desktop/LovePlan/欧拉计划/Problems/P"+str(num)+".html","w",encoding="utf-8") as fout:
+        fout.write(html)
     print("已下载Problems/P"+str(num))
 
 if __name__ == "__main__":
@@ -30,6 +32,7 @@ if __name__ == "__main__":
         print(readme)
     elif argv[1] == "--clean" or argv[1] == "-c":
         os.system("rm Problems/*")
+        os.system("rm C:/Users/Catherine_JY/Desktop/LovePlan/欧拉计划/Problems/*")
         print("已清理Problems文件夹")
     elif argv[1] == "--download" or argv[1] == "-d":
         try:
