@@ -1,6 +1,6 @@
 
 public class Mar4th_21{
-    //find the sum of amicable pair
+    //find the sum of factor
     private static int FindSumFactor(int num){
         int sumF = 1;  
         int limit = (int)Math.sqrt(num);  
