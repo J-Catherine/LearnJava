@@ -5,7 +5,7 @@ public class Mar13th_24{
     static int[] val3 = new int[1002];
     
     private static void plus(int num){
-        for(int len = 1;; num++){
+        for(int len = 1; ; num++){
             for(int i = 0; i < len; i++){
                 val3[i] = val1[i];
             }
@@ -17,7 +17,7 @@ public class Mar13th_24{
                     val1[i] -= 10;
                 }   
             }
-            if(val1[len]>0){
+            if(val1[len] > 0){
                 len++;
             }
             // for(int i=len-1;i>=0;i--){
@@ -31,8 +31,7 @@ public class Mar13th_24{
             // for(int i=len-1;i>=0;i--){
             //     System.out.print(val3[i]);
             // }
-            // System.out.println(len);
-            // System.out.println(num);
+            // System.out.println();
             if(len == 1000){
                 System.out.print(num);
                 break;
