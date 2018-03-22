@@ -13,7 +13,7 @@ public class Mar20th_29{
                     for(int k = 2; k <= 100; k++){
                         if(a[k * j] == 1){
                             exnum++;
-                            System.out.printf("%d: %d   ",j,k*j);
+                            //System.out.printf("%d: %d   ",j,k*j);
                         }
                         else{
                             a[k * j] = 1;
