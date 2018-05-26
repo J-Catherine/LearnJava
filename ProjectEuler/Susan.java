@@ -6,7 +6,8 @@ public class Susan{
                 for(int k = 1;k<=j && k < 37; k++){
                     if( i * j * k == 36){
                         c++;
-                        System.out.printf("%d-  i:%d  j:%d  k:%d\n",c, i , j, k) ;
+                        System.out.printf("%d-  i:%d  j:%d  k:%d",c, i , j, k) ;
+                        System.out.printf("  s = %d\n", i+k+j);
                     }
                 }
             }
