@@ -1,3 +1,3 @@
-# LearnJava
+# Project Euler
 
-java学习笔记
+欧拉计划习题  （2018春）
